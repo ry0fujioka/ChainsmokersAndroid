@@ -44,15 +44,6 @@ public class PlayerMove : MonoBehaviour
         LevelManager.Instance.onRespawn += OnRespawn;
     }
 
-    private void OnDisable()
-    {
-        //if (gameObject.scene.isLoaded)
-        //{
-        //    return;
-        //}
-        //if (LevelManager.Instance != null)
-        //    LevelManager.Instance.onRespawn -= OnRespawn;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -100,7 +91,6 @@ public class PlayerMove : MonoBehaviour
     {
         turnSpeed = isAccelerating ? movingTurnSpeed : idleTurnSpeed;
         currentTurnSpeed = Mathf.SmoothDamp(currentTurnSpeed, turnSpeed * input, ref turnSpeedSmoothing, turnAccelerationTime);
-        //rb.AddRelativeTorque(Vector3.forward * currentTurnSpeed * Time.deltaTime);
         rb.angularVelocity = Vector3.forward * currentTurnSpeed * Time.fixedDeltaTime * Mathf.PI * 3;
     }
 

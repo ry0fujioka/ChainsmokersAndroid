@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LockedBlock : MonoBehaviour
 {
+    //key‚ğŠl“¾‚·‚é‚ÆÁ‚¦‚é•Ç
     MeshRenderer mesh;
     Collider collider;
 
@@ -22,12 +23,6 @@ public class LockedBlock : MonoBehaviour
 
     private void OnDisable()
     {
-        //if (gameObject.scene.isLoaded)
-        //{
-        //    return;
-        //}
-        //if (LevelManager.Instance != null)
-        //    LevelManager.Instance.onRespawn -= Reset;
         if (Key.onKeyCollected != null)
             Key.onKeyCollected -= Open;
     }

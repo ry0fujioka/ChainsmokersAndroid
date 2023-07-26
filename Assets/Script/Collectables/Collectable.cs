@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
+    //収集物用のクラス
+    //取得された時の共通の挙動を実装する
     [SerializeField]
     MeshRenderer mesh;
     [SerializeField]
@@ -32,8 +34,6 @@ public class Collectable : MonoBehaviour
         {
             return;
         }
-        //if (LevelManager.Instance != null)
-        //    LevelManager.Instance.onRespawn -= Show;
     }
 
     public virtual void Reset()

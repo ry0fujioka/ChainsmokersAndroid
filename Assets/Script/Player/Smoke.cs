@@ -13,15 +13,6 @@ public class Smoke : MonoBehaviour
         PlayerHealth.Instance.onDeath += OnDeath;
     }
 
-    private void OnDisable()
-    {
-        //if (gameObject.scene.isLoaded)
-        //{
-        //    return;
-        //}
-        //if (PlayerHealth.Instance != null)
-        //    PlayerHealth.Instance.onDeath -= OnDeath;
-    }
 
     // Start is called before the first frame update
     void Start()

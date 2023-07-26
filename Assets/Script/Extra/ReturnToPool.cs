@@ -17,10 +17,10 @@ public class ReturnToPool : MonoBehaviour
     {
 
     }
-
-    // Returns this object to the pool
+    
     private void Return()
     {
+        // SetActiveをfalseにしてプールに戻る
         gameObject.SetActive(false);
     }
 

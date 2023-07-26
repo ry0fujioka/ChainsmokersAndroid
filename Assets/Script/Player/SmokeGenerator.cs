@@ -6,7 +6,7 @@ public class SmokeGenerator : Singleton<SmokeGenerator>
 {
     public Material material;
     public GameObject area;
-    //public Dictionary<GameObject, Vector3> meshPositions = new Dictionary<GameObject, Vector3>();
+    //煙が自壊するときやリスタートの時にオブジェクトから逆引きしやすいようにKeyValuePairを使う
     public List<KeyValuePair<GameObject, Vector3>> meshPositions = new List<KeyValuePair<GameObject, Vector3>>();
 
     float moveTotal;
@@ -30,19 +30,11 @@ public class SmokeGenerator : Singleton<SmokeGenerator>
         PlayerHealth.Instance.onDeath += Reset;
     }
 
-    private void OnDisable()
-    {
-        //if (gameObject.scene.isLoaded)
-        //{
-        //    return;
-        //}
-        //if (PlayerHealth.Instance != null)
-        //    PlayerHealth.Instance.onDeath -= Reset;
-    }
 
     // Update is called once per frame
     void Update()
     {
+        //moveTotalに前回煙を生成してからの移動距離を保存し、一定の距離を超えたら煙を生成する
         Vector2 diffPos = new Vector2(this.transform.position.x, this.transform.position.y) - lastPos;
         moveTotal += diffPos.magnitude;
         GenerateSmoke();
@@ -93,8 +85,8 @@ public class SmokeGenerator : Singleton<SmokeGenerator>
     public void OnTouch(GameObject hitObject)
     {
         Mesh mesh = new Mesh();
-        KeyValuePair<GameObject, Vector3> hitObjectPair = new KeyValuePair<GameObject, Vector3>(hitObject, hitObject.transform.position);
         int size = 0;
+        //頂点の数を数える
         foreach(var obj in meshPositions)
         {
             if (obj.Key == hitObject)
@@ -103,6 +95,7 @@ public class SmokeGenerator : Singleton<SmokeGenerator>
             }
             size++;
         }
+        //メッシュ生成に必要な頂点の座標とそれらをつないでできる三角形を保存
         if (size >= 3)
         {
             Vector3[] vertices = new Vector3[size];

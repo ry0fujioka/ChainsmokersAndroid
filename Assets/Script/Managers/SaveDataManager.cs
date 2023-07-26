@@ -5,20 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SaveDataManager : Singleton<SaveDataManager>
 {
-    //PlayerPrefs
-    //"(Scene name)"+"Star" returns collected stars of the level with the name
-    //
-    //"(Scene name)"+"Lock" returns 0 if it's locked, returns 1 if it's unlocked
-    //
-    //"Volume" returns volume setting
-
     public int GetStarData(string levelName)
     {
+        //各レベルの星の獲得状況を獲得する。デフォルトの個数は0
         return PlayerPrefs.GetInt(levelName + "Star", 0);
     }
 
+    
     public void SaveStarData(int currentStar)
     {
+        //獲得した星のデータを"レベルの名前"+"Star"をキーとしてintで保存
         int savedStar = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name+"Star", 0);
         if (currentStar > savedStar)
         {
@@ -27,15 +23,14 @@ public class SaveDataManager : Singleton<SaveDataManager>
         }
     }
 
+    
     public int GetLevelOpenData(string levelName)
     {
+        //レベルが開放されてるかチェック
+        //開放されていなければ0が
+        //開放されていれば1が
+        //もし存在しないレベルの場合-1が返ってくる
         return PlayerPrefs.GetInt(levelName + "Lock", -1);
-    }
-
-    public void SetLevelOpenData(string levelName)
-    {
-        PlayerPrefs.SetInt(levelName + "Lock", 0);
-        PlayerPrefs.Save();
     }
 
     public void UnlockLevel(string unlockingLevelName)
@@ -53,6 +48,7 @@ public class SaveDataManager : Singleton<SaveDataManager>
 
     public void SetVolume(float volume)
     {
+        //音量のデータの保存
         volume = Mathf.Clamp(volume, 0, 1);
         PlayerPrefs.SetFloat("Volume", volume);
         PlayerPrefs.Save();

@@ -34,18 +34,6 @@ public class UIManager : Singleton<UIManager>
         Goal.Instance.onGoal += OnGoal;
     }
 
-    private void OnDisable()
-    {
-        //if (LevelManager.Instance != null)
-        //{
-        //    LevelManager.Instance.onRespawn -= OnRespawn;
-        //}
-        //if (Goal.Instance != null)
-        //{
-        //    Goal.Instance.onGoal -= OnGoal;
-        //}
-    }
-
     // Start is called before the first frame update
     void Start()
     {

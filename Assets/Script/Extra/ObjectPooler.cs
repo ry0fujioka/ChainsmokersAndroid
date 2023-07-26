@@ -17,7 +17,7 @@ public class ObjectPooler : MonoBehaviour
         Refill();
 	}
     
-    // Creates our Pool
+    //新しいプールを作る
     public void Refill()
     {
         pooledObjects = new List<GameObject>();
@@ -27,10 +27,10 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    // Return one object from our pool
+    //プールから現在使えるオブジェクトを獲得する
     public GameObject GetObjectFromPool()
     {
-        // Return one Object from the pool if we find one disable
+        // 今使われていないプーリングされたオブジェクトを探す
         for (int i = 0; i < pooledObjects.Count; i++)
         {
             if (!pooledObjects[i].activeInHierarchy)
@@ -39,7 +39,7 @@ public class ObjectPooler : MonoBehaviour
             }
         }
 
-        // If we need more objects, lets expand our pool
+        // もしオブジェクトが足りない場合、プールが拡張できる設定の場合拡張する
         if (poolCanExpand)
         {
             return AddObjectToPool();
@@ -48,9 +48,9 @@ public class ObjectPooler : MonoBehaviour
         return null;
     }
 
-    // Adds one object to the pool
     public GameObject AddObjectToPool()
     {
+        // 能動的に新しいオブジェクトをプールに追加する
         GameObject newObject = Instantiate(objectPrefab);
         newObject.SetActive(false);
         newObject.transform.parent = parentObject.transform;

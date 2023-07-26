@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerVisible : MonoBehaviour
 {
+	//プレイヤーが画面内にいるかのチェックするコード
 	[SerializeField]
 	Camera mainCamera;
 
@@ -24,15 +25,6 @@ public class PlayerVisible : MonoBehaviour
 		LevelManager.Instance.onRespawn += OnRespawn;
 	}
 
-	private void OnDisable()
-	{
-		//if (gameObject.scene.isLoaded)
-		//{
-		//	return;
-		//}
-		//if (LevelManager.Instance != null)
-		//	LevelManager.Instance.onRespawn -= OnRespawn;
-	}
 
 	void Update()
 	{

@@ -39,8 +39,6 @@ public class LevelManager : Singleton<LevelManager>
         {
             return;
         }
-        //if (PlayerHealth.Instance != null)
-        //    PlayerHealth.Instance.onDeath -= OnDeath;
     }
 
     void Initialize()
@@ -64,15 +62,13 @@ public class LevelManager : Singleton<LevelManager>
         PlayerHealth.Instance.ResetTrail();
     }
 
+    //一応今後複数のリスポーンポイントを作る場合が合った時用
+    /*
     void UpdateRespawnPoint()
     {
         currentTransformIndex = (currentTransformIndex >= respawnTransforms.Length) ? 0 : currentTransformIndex + 1;
     }
-
-    void OnGoal()
-    {
-
-    }
+    */
 
     IEnumerator WaitForRespawn()
     {
